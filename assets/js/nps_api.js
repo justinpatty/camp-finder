@@ -70,14 +70,19 @@ function getParkAmenities() {
     })
 }
 
-
-
-function getGallery() {
-
+function getCampGrounds() {
+    const requestUrl = `${baseURL}/campgrounds?api_key=${apiKey}`;
+    fetch(requestUrl).then(function (response) {
+        return response.json()
+    })
+    .then(function(data) {
+    console.log(data)
+    })
 }
 
+getCampGrounds();
 getStates();
-// getParks();
-// getParkAmenities();
-// getParkAlerts();
-// getParkActivites();
+getParks();
+getParkAmenities();
+getParkAlerts();
+getParkActivites();
