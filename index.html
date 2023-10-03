@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5512bb54e3.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/5512bb54e3.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Campie</title>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Header -->
+   
+    <header id="camper">Camp Finder
+    <!-- nav bar -->
+    <button class="flex"><i class="fa-solid fa-bars"></i>
+    </button>
+</header>
+    <!-- Search form by City, State -->
+    <form class="w-full max-w-sm">
+        <div class="flex items-center border-b border-green-500 py-2">
+          <input class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="City, State" aria-label="Full name">
+          <button class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+            Search
+          </button>
+        </div>
+      </form>
 
-    <i class="fa-solid fa-bars"></i>
-    
-</body>
+
+  </body>
 </html>
