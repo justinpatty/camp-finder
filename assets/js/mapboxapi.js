@@ -1,7 +1,7 @@
 var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFlaTgifQ.rJIBDrbFLHr2CMnNCEtaeA';
 
 async function load_map() {
-// change parkLong and park Lat to call API data of Long and Lat
+// change parkLong and parkLat to call API data of Long and Lat
     var parkLong = "-91.3085"
     var parkLat = "34.0039"
 // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
