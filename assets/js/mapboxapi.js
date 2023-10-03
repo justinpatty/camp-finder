@@ -5,9 +5,9 @@ async function load_map() {
     var parkLong = "-91.3085"
     var parkLat = "34.0039"
 // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
-    var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+    var mbapiURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
 
-    var url = testURL
+    var url = mbapiURL
 
     const options = {
         method: "GET"
