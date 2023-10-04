@@ -2,6 +2,8 @@ var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
 var campGrounds = [];
 
+
+
 function getStates() {
   const url =
     "https://gist.githubusercontent.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_hash.json";
@@ -28,7 +30,7 @@ document
     var stateSelect = document.querySelector("#state-dropdown").value;
     getParks(stateSelect);
   });
-
+//${state}
 function getParks(state) {
   const requestUrl = `${baseURL}/parks?stateCode=${state}&api_key=${apiKey}`;
   fetch(requestUrl)
@@ -62,6 +64,8 @@ document
     getCampGrounds(park);
   });
 
+
+// function for modal
 function getCampGrounds(park) {
   const requestUrl = `${baseURL}/campgrounds?parkCode=${park}&api_key=${apiKey}`;
   fetch(requestUrl)
@@ -70,9 +74,19 @@ function getCampGrounds(park) {
     })
     .then(function (data) {
       console.log(data);
-      if (data.total == 0) {
-        document.querySelector(".alert").textContent = "No campgrounds found! ";
-      } else {
+      if (data.total == 0) { 
+    //   document.querySelector(".alert").textContent = "No campgrounds found! ";   
+        // Modal; if response is 0 then modal appears 
+        // When User clicks close button modal disappears
+        var modal = document.querySelector('.modal');
+            // Back to Search Button for modal
+            var closeButton = document.querySelector('.close-button');
+            closeButton.addEventListener('submit', () => {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+          });
+    } else {
         showCampsDropdown(data.data);
       }
     });
@@ -137,4 +151,11 @@ function getParkAmenities() {
     });
 }
 
+
+
+
+
+
 getStates();
+
+
