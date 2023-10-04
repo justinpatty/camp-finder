@@ -21,17 +21,18 @@
     </header>
 
     <!-- Search form by City, State -->
-    <form class="w-full max-w-sm">
-      <div class="flex items-center border-b border-amber-500 py-2">
+    <form id="search-form" class="w-full max-w-sm">
+      <div class="flex items-center border-b border-green-500 py-2">
         <input
           class="appearance-none bg-transparent border-none w-full text-slate-950 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text"
           placeholder="City, State"
           aria-label="Full name"
         />
+        <select name="" id="state-dropdown"></select>
         <button
-          class="flex-shrink-0 bg-amber-500 hover:bg-amber-500 border-amber-700 hover:border-amber-950 text-sm border-4 text-amber-700 py-1 px-2 rounded"
-          type="button"
+          class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+          type="submit"
         >
           Search
         </button>
@@ -56,7 +57,7 @@
     <!-- We need a container to display the following 
     message when a selected park does not 
     have a campground: "No campgrounds found! " -->
-    
+
 
 
     <main>
