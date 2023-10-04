@@ -1,5 +1,6 @@
 var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
+var campGrounds = [];
 
 function getStates() {
   const url =
@@ -13,37 +14,94 @@ function getStates() {
       for (const key in data) {
         options += `<option value=${key}>${data[key]}</option>`;
       }
-    document.querySelector("#state-dropdown").innerHTML = options;
-    //   getSelectedState();
+      document.querySelector("#state-dropdown").innerHTML = options;
     })
     .catch(function (error) {
       console.log(error);
     });
 }
 
-function getSelectedState() {
-  document.querySelector("#state-dropdown")
-}
-
-document.querySelector('#search-form').addEventListener("submit", function (event) {
+document
+  .querySelector("#search-state-form")
+  .addEventListener("submit", function (event) {
     event.preventDefault();
-    console.log('hello-world');
     var stateSelect = document.querySelector("#state-dropdown").value;
     getParks(stateSelect);
   });
 
 function getParks(state) {
-  const requestUrl = `${baseURL}/parks?q=${state}&api_key=${apiKey}`;
+  const requestUrl = `${baseURL}/parks?stateCode=${state}&api_key=${apiKey}`;
+  fetch(requestUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const parks = data.data.filter(function (item) {
+        return item.fullName.toLowerCase().includes("park");
+      });
+      showParkDropdown(parks);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function showParkDropdown(parks) {
+  var options = '<option value="">Select a park</option>';
+  for (const park of parks) {
+    options += `<option value=${park.parkCode}>${park.fullName}</option>`;
+  }
+  document.querySelector("#park-dropdown").innerHTML = options;
+}
+
+document
+  .querySelector("#search-park-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    var park = document.querySelector("#park-dropdown").value;
+    getCampGrounds(park);
+  });
+
+function getCampGrounds(park) {
+  const requestUrl = `${baseURL}/campgrounds?parkCode=${park}&api_key=${apiKey}`;
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
-    })
-    .catch(function (error) {
-      console.log(error);
+      if (data.total == 0) {
+        document.querySelector(".alert").textContent = "No campgrounds found! ";
+      } else {
+        showCampsDropdown(data.data);
+      }
     });
+}
+
+function showCampsDropdown(camps) {
+  campGrounds = camps;
+  var options = '<option value="">Select a park</option>';
+  for (const i in camps) {
+    options += `<option value=${i}>${camps[i].name}</option>`;
+  }
+  document.querySelector("#camp-dropdown").innerHTML = options;
+}
+
+document
+  .querySelector("#search-camps-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    var index = document.querySelector("#camp-dropdown").value;
+    console.log(campGrounds[+index])
+    showCampInfo(campGrounds[+index]);
+  });
+
+function showCampInfo(camp) {
+    const content = `
+    <img src="${camp.images[0].url}" alt="${camp.images[0].altText}">
+            <h3>Name: ${camp.name}</h3>
+            <p>${camp.description}</p>`
+    document.querySelector(".camp-info").innerHTML=content
 }
 
 function getParkActivites() {
@@ -79,20 +137,4 @@ function getParkAmenities() {
     });
 }
 
-function getCampGrounds() {
-  const requestUrl = `${baseURL}/campgrounds?api_key=${apiKey}`;
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
-}
-
-getCampGrounds();
 getStates();
-getParks();
-getParkAmenities();
-getParkAlerts();
-getParkActivites();
