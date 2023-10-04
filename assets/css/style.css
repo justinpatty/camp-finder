@@ -11,5 +11,10 @@
     font-size: 2.5rem;
     background-color: olive;
     color: tan;
-    text-align: center; 
+    text-align: center;
+    
 } 
+
+#map {
+    width: 100%;
+}
