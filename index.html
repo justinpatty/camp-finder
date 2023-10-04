@@ -8,6 +8,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Campie</title>
   </head>
@@ -19,34 +21,94 @@
       <!-- nav bar -->
       <button class="flex"><i class="fa-solid fa-bars"></i></button>
     </header>
-
+    <div class="alert"></div>
     <!-- Search form by City, State -->
-    <form class="w-full max-w-sm">
+    <form id="search-state-form" class="w-full max-w-sm">
       <div class="flex items-center border-b border-green-500 py-2">
         <input
           class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text"
-          placeholder="City, State"
+          placeholder="Select a state"
           aria-label="Full name"
         />
+        <select name="" id="state-dropdown"></select>
         <button
           class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-          type="button"
+          type="submit"
         >
           Search
         </button>
       </div>
     </form>
 
-    <aside>
+    <form id="search-park-form" class="w-full max-w-sm">
+        <div class="flex items-center border-b border-green-500 py-2">
+          <input
+            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="text"
+            placeholder="Select a park"
+            aria-label="Full name"
+          />
+          <select name="" id="park-dropdown"></select>
+          <button
+            class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
+      </form>
 
-    </aside>
+      <form id="search-camps-form" class="w-full max-w-sm">
+        <div class="flex items-center border-b border-green-500 py-2">
+          <input
+            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            type="text"
+            placeholder="Select a campground"
+            aria-label="Full name"
+          />
+          <select name="" id="camp-dropdown"></select>
+          <button
+            class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            type="submit"
+          >
+            Search
+          </button>
+        </div>
+      </form>
+  
+      <aside class="width-10">
 
-    <main>
+      </aside>
+  
+      <main class="gap-8 columns-3 mb-8">
+        <!--
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-green-500">
+              <img class="w-full" src="/assets/js/placeholder.gif" alt="Sunset in the mountains">
+             <div class="px-6 py-4 ">
+            <div class="font-bold text-xl mb-2 ">park location</div>
+                <p class="text-gray-700 text-base">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                </p>
+              </div>
+              <div class="px-6 pt-4 pb-2">
+              </div>
+            </div>
+          -->
+      </main>
 
-    </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <!-- <main>
+       // <div class="camp-info">
+            <img src="" alt="">
+            <h3>Camp Name</h3>
+            <p>Description</p>
+            
+        </div>
+        <div id="map-container"></div>
+    </main>-->
+
+    <script src="assets/js/mapboxapi.js"></script>
     <script src="./assets/js/nps_api.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/mapboxapi.js"></script>

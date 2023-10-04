@@ -30,3 +30,5 @@ async function load_map() {
 
 // add call to search function
 load_map()
+
+
