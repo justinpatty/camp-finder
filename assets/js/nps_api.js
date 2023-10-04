@@ -28,7 +28,7 @@ document
     var stateSelect = document.querySelector("#state-dropdown").value;
     getParks(stateSelect);
   });
-
+//${state}
 function getParks(state) {
   const requestUrl = `${baseURL}/parks?stateCode=${state}&api_key=${apiKey}`;
   fetch(requestUrl)
