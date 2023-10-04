@@ -5,7 +5,8 @@
 // API key for nps 
 
  var main = document.querySelector("main");
-
+ // getParks.data.fullName
+//console.log(getParks.data.length);
 
 for (var i = 0; i < 15; i++) {
     console.log(i);

@@ -31,9 +31,9 @@ document.querySelector('#search-form').addEventListener("submit", function (even
     var stateSelect = document.querySelector("#state-dropdown").value;
     getParks(stateSelect);
   });
-
+//${state}
 function getParks(state) {
-  const requestUrl = `${baseURL}/parks?q=${state}&api_key=${apiKey}`;
+  const requestUrl = `${baseURL}/parks?q=Texas&api_key=${apiKey}`;
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
