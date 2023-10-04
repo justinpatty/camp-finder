@@ -8,7 +8,7 @@
  // getParks.data.fullName
 //console.log(getParks.data.length);
 
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < 15; i++) {
     console.log(i);
     var div = document.createElement("div");
     div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");

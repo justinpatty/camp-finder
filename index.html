@@ -24,15 +24,16 @@
 <!-- </header> -->
     <div class="alert"></div>
     <!-- Search form by City, State -->
-    <aside class = "forms">
-    <form id="search-state-form" class="w-full max-w-sm">
+    <!-- Search box 1 -->
+    <aside class = "forms flex max-w-xs flex-wrap">
+    <form id="search-state-form" class="max-w-sm">
       <div class="flex items-center border-b border-green-500 py-2">
         <input
-          class="appearance-none bg-transparent border-none w-full text-slate-950 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          class="appearance-none bg-transparent border-none w-full text-slate-950 py-1 leading-tight focus:outline-none"
           type="text"
           aria-label="Full name"
         />
-        <select id="state-dropdown"></select>
+        <select class="max-w-xs " id="state-dropdown"></select>
         <button
           class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
           type="submit"
@@ -41,16 +42,15 @@
         </button>
       </div>
     </form>
-
+<!-- Search Box 2 -->
     <form id="search-park-form" class="w-full max-w-sm">
         <div class="flex items-center border-b border-green-500 py-2">
           <input
-            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            class="max-w-xs appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
-           
             aria-label="Full name"
           />
-          <select id="park-dropdown"></select>
+          <select class="max-w-xs justify-center" id="park-dropdown"></select>
           <button
             class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"
@@ -59,16 +59,16 @@
           </button>
         </div>
       </form>
-
+<!-- Search Box 3 -->
       <form id="search-camps-form" class="w-full max-w-sm">
         <div class="flex items-center border-b border-green-500 py-2">
           <input
-            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            class="appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
            
             aria-label="Full name"
           />
-          <select id="camp-dropdown"></select>
+          <select class="max-w-xs" id="camp-dropdown"></select>
           <button
             class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"

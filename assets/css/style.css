@@ -18,6 +18,12 @@
 #map {
     width: 100%;
 }
+/* override px width on dropdown menus */
+#park-dropdown, 
+#camp-dropdown {
+    max-width: 248px!important;
+}
+
 
 .modal {
     display: none;
