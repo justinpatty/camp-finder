@@ -99,11 +99,7 @@ function getCampGrounds(park)  {
 
 function showCampsDropdown(camps) {
   campGrounds = camps;
-
   var options = '<option value="">Select a campground</option>';
-=======
-
-
   for (const i in camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }
@@ -235,7 +231,7 @@ getStates();
   
     if (tf == true) {
     var div = document.createElement("div");
-    div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+    div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-[#228b22] mb-8");
     main.appendChild(div);
   
     var img = document.createElement('img');
@@ -265,7 +261,7 @@ getStates();
      var p = document.createElement("p");
      p.setAttribute("class","text-gray-700 text-base");
      p.textContent = data.description;
-     div2.appendChild(p);
+     div.appendChild(p);
  
      var div3 = document.createElement("div");
      div3.setAttribute("class","px-6 pt-4 pb-2");
@@ -275,9 +271,20 @@ getStates();
  for (var i = 0; i < data.data.length; i++) {
      console.log(i);
      var div = document.createElement("div");
-     div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+     div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-[#005500] mb-8");
      main.appendChild(div);
-     
+     var div2 = document.createElement("div");
+     div2.setAttribute("class","px-6 py-4");
+     div.appendChild(div2);
+     var div2a = document.createElement("div");
+     div2a.setAttribute("class","font-bold text-xl mb-2");
+     if (nameStyle == 1) {
+      div2a.textContent = data.data[i].fullName;
+    }else{
+      div2a.textContent = data.data[i].name;
+    }
+     div2.appendChild(div2a);
+
      var img = document.createElement('img');
      img.setAttribute("class", "w-full");
      if (data.data[i].images[0] === undefined ) {
@@ -288,23 +295,12 @@ getStates();
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
-     var div2 = document.createElement("div");
-     div2.setAttribute("class","px-6 py-4");
-     div.appendChild(div2);
- 
-     var div2a = document.createElement("div");
-     div2a.setAttribute("class","font-bold text-xl mb-2");
-     if (nameStyle == 1) {
-      div2a.textContent = data.data[i].fullName;
-    }else{
-      div2a.textContent = data.data[i].name;
-    }
-     div2.appendChild(div2a);
+    
  
      var p = document.createElement("p");
-     p.setAttribute("class","text-gray-700 text-base");
+     p.setAttribute("class","text-[#decd87] text-base row");
      p.textContent =  data.data[i].description;
-     div2.appendChild(p);
+     div.appendChild(p);
  
      var div3 = document.createElement("div");
      div3.setAttribute("class","px-6 pt-4 pb-2");
