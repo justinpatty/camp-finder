@@ -117,7 +117,7 @@ function showCampInfo(camp) {
    // <img src="${camp.images[0].url}" alt="${camp.images[0].altText}">
   //        <h3>Name: ${camp.name}</h3>
   //         <p>${camp.description}</p>`
-    document.querySelector(".camp-info").innerHTML=content
+   // document.querySelector(".camp-info").innerHTML=content
 }
 
 function getParkActivites() {
@@ -165,34 +165,35 @@ getStates();
   var main = document.querySelector("main");
   main.innerHTML = '';
   
- if (tf == true) {
-  var div = document.createElement("div");
-  div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
-  main.appendChild(div);
+    if (tf == true) {
+    var div = document.createElement("div");
+    div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+    main.appendChild(div);
   
-  var img = document.createElement('img');
-  img.setAttribute("class", "w-full");
-  img.setAttribute("src", "https://media.tenor.com/JgPFGWYaS_8AAAAM/thisistheonedude123-bears.gif");
-  img.setAttribute("alt", "Picture of destination");
-  div.appendChild(img);
- 
-  var mapdiv = document.createElement("div");
-  mapdiv.setAttribute("id","map-container");
-  div.appendChild(mapdiv);
+    var img = document.createElement('img');
+    img.setAttribute("class", "w-full");
+    var img1 = data.images[0].url;
+     img.src = img1;
+ // img.setAttribute("src", img1);
+    img.setAttribute("alt", "Picture of destination");
+     div.appendChild(img);
+  
+   // var mapdiv = document.createElement("div");
+   // mapdiv.setAttribute("id","map-container");
+    // div.appendChild(mapdiv);
 
-  var div2 = document.createElement("div");
+     var div2 = document.createElement("div");
      div2.setAttribute("class","px-6 py-4");
      div.appendChild(div2);
  
      var div2a = document.createElement("div");
      div2a.setAttribute("class","font-bold text-xl mb-2");
-     var fullName = data.Name;
-     div2a.textContent = fullName;
+     div2a.textContent = data.name;
      div2.appendChild(div2a);
  
      var p = document.createElement("p");
      p.setAttribute("class","text-gray-700 text-base");
-     p.textContent = " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.";
+     p.textContent = data.description;
      div2.appendChild(p);
  
      var div3 = document.createElement("div");
@@ -208,7 +209,7 @@ getStates();
      
      var img = document.createElement('img');
      img.setAttribute("class", "w-full");
-     img.setAttribute("src", "https://media.tenor.com/JgPFGWYaS_8AAAAM/thisistheonedude123-bears.gif");
+     img.src = data.data[i].images[0].url;
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
@@ -224,7 +225,7 @@ getStates();
  
      var p = document.createElement("p");
      p.setAttribute("class","text-gray-700 text-base");
-     p.textContent = " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.";
+     p.textContent =  data.data[i].description;
      div2.appendChild(p);
  
      var div3 = document.createElement("div");
