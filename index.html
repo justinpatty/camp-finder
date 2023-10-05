@@ -11,27 +11,29 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Campie</title>
+    <title>Camp Finder</title>
   </head>
   <body>
     
-    <!-- Header -->
     <header id="camper">
-      Camp Finder
+        <!-- <header class="flex items-center bg-green-500 py-10 ft bold"> -->
+     <img class="h-64 ml-44 px-2" src="./assets/images/camp_finder_horizontal_clearbg.png" alt="" srcset="">
       <!-- nav bar -->
-      <button class="flex"><i class="fa-solid fa-bars"></i></button>
+      <!-- <nav class="flex"><i class="fa-solid fa-bars"></i></nav> -->
     </header>
+<!-- </header> -->
     <div class="alert"></div>
     <!-- Search form by City, State -->
-    <form id="search-state-form" class="w-full max-w-sm">
+    <!-- Search box 1 -->
+    <aside class = "forms flex max-w-xs flex-wrap">
+    <form id="search-state-form" class="max-w-sm">
       <div class="flex items-center border-b border-green-500 py-2">
         <input
-          class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          class="appearance-none bg-transparent border-none w-full text-slate-950 py-1 leading-tight focus:outline-none"
           type="text"
-          placeholder="Select a state"
           aria-label="Full name"
         />
-        <select name="" id="state-dropdown"></select>
+        <select class="max-w-xs " id="state-dropdown"></select>
         <button
           class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
           type="submit"
@@ -40,16 +42,15 @@
         </button>
       </div>
     </form>
-
+<!-- Search Box 2 -->
     <form id="search-park-form" class="w-full max-w-sm">
         <div class="flex items-center border-b border-green-500 py-2">
           <input
-            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            class="max-w-xs appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
-            placeholder="Select a park"
             aria-label="Full name"
           />
-          <select name="" id="park-dropdown"></select>
+          <select class="max-w-xs justify-center" id="park-dropdown"></select>
           <button
             class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"
@@ -58,16 +59,16 @@
           </button>
         </div>
       </form>
-
+<!-- Search Box 3 -->
       <form id="search-camps-form" class="w-full max-w-sm">
         <div class="flex items-center border-b border-green-500 py-2">
           <input
-            class="appearance-none bg-transparent border-none w-full text-black-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+            class="appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
-            placeholder="Select a campground"
+           
             aria-label="Full name"
           />
-          <select name="" id="camp-dropdown"></select>
+          <select class="max-w-xs" id="camp-dropdown"></select>
           <button
             class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"
@@ -76,39 +77,65 @@
           </button>
         </div>
       </form>
+    </aside>
+
+       <!-- Map Container -->
+   <article class=" bg-gray-50 py-2 px-8 ml-72">
+    <!-- <div class="camp-info">
+           <img src="" alt="">           -->
+      <!-- </div> --> 
+      <div id="map-container">
+
+
+      </div>
+  </article>
   
       <aside class="width-10">
 
       </aside>
   
-      <main class="gap-8 columns-3 mb-8">
-        <!--
-        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-green-500">
-              <img class="w-full" src="/assets/js/placeholder.gif" alt="Sunset in the mountains">
-             <div class="px-6 py-4 ">
-            <div class="font-bold text-xl mb-2 ">park location</div>
-                <p class="text-gray-700 text-base">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                </p>
-              </div>
-              <div class="px-6 pt-4 pb-2">
-              </div>
-            </div>
-          -->
+      <main class="gap-8 columns-3 mb-1">
+      
       </main>
 
+      <!-- Modal Pop up "No Campgrounds" -->
+     <div class="modal">  
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div class="fixed inset-0 transition-opacity">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+          </div>
+          <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                </div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                    No Campgrounds Found 
+                  </h3>
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-500">
+                    </p>
+                  </div>
+                </div>
+              </div>
+             </div> 
 
-   <!-- <main>
-       // <div class="camp-info">
-            <img src="" alt="">
-            <h3>Camp Name</h3>
-            <p>Description</p>
-            
+            <div class="bg-gray-50 px-4 py-3 sm:px-3 sm:flex sm:flex-row-reverse">
+              <button type="button" id="close-button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                Back to Search
+              </button>
+            </div>
+          </div>
         </div>
-        <div id="map-container"></div>
-    </main>-->
+      </div>
+    </div>
+   
+ 
 
-    <script src="assets/js/mapboxapi.js"></script>
+
+    <script src="./assets/js/mapboxapi.js"></script>
     <script src="./assets/js/nps_api.js"></script>
   </body>
 </html>
