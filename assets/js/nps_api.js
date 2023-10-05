@@ -80,7 +80,7 @@ function getCampGrounds(park) {
         // When User clicks close button modal disappears
         var modal = document.querySelector('.modal');
             // Back to Search Button for modal
-            var closeButton = document.querySelector('.close-button');
+            var closeButton = document.querySelector('#close-button');
             closeButton.addEventListener('submit', () => {
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
