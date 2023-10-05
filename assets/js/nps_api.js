@@ -1,7 +1,7 @@
 var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
 var campGrounds = [];
-
+var saveBtn = document.getElementById('save-btn');
 
 
 function getStates() {
@@ -99,6 +99,7 @@ function showCampsDropdown(camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }
   document.querySelector("#camp-dropdown").innerHTML = options;
+  console.log(options)
 }
 
 document
@@ -108,6 +109,7 @@ document
     var index = document.querySelector("#camp-dropdown").value;
     console.log(campGrounds[+index])
     showCampInfo(campGrounds[+index]);
+    saveToLocalStorage(campGrounds[+index]);
   });
 
 function showCampInfo(camp) {
@@ -153,6 +155,15 @@ function getParkAmenities() {
     });
 }
 
+function saveToLocalStorage(data){
+    var searchStorage = [];
+    searchStorage.push(data.name)
+    console.log('data', searchStorage)
+    localStorage.setItem('searchHistory', searchStorage);
+    var searchedValue = localStorage.getItem('searchHistory')
+    console.log(searchedValue)
+    }
+saveBtn.addEventListener('click', saveToLocalStorage)
 
 
 
