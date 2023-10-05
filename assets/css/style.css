@@ -6,13 +6,7 @@
 }
 
 #camper {
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 2.5rem;
-    background-color: olive;
-    color: tan;
-    text-align: center;
-    
+     background-color: olive;   
 } 
 
 #map {
