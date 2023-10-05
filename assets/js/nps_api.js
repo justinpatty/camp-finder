@@ -1,7 +1,7 @@
 var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
-var campGrounds = [];
 var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFlaTgifQ.rJIBDrbFLHr2CMnNCEtaeA';
+var campGrounds = [];
 
 var campname = 2;
 var parkname = 1;
@@ -116,13 +116,8 @@ document
   });
 
 function showCampInfo(camp) {
- //   const content = `
   var t = true;
     cards(camp, t, campname);
-   // <img src="${camp.images[0].url}" alt="${camp.images[0].altText}">
-  //        <h3>Name: ${camp.name}</h3>
-  //         <p>${camp.description}</p>`
-   // document.querySelector(".camp-info").innerHTML=content
 }
 
 function getParkActivites() {
@@ -161,32 +156,32 @@ function getParkAmenities() {
 
 
 
+
 async function load_map(long,lat) {
-// change parkLong and parkLat to call API data of Long and Lat
-    var parkLong = long
-    var parkLat = lat
-// change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
-    var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
-
-    var url = testURL
-
-    const options = {
-        method: "GET"
-    }
-    let response = await fetch(url, options)
-    if (response.status === 200) {
-        const imageBlob = await response.blob()
-        const imageObjectURL = URL.createObjectURL(imageBlob);
-        const image = document.createElement('img')
-        image.src = imageObjectURL
-        const container = document.getElementById("map-container")
-        container.append(image)
-    }
-    else {
-        console.log("HTTP-Error: " + response.status)
-    }
-}
-
+  // change parkLong and parkLat to call API data of Long and Lat
+      var parkLong = long
+      var parkLat = lat
+  // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
+      var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+  
+      var url = testURL
+  
+      const options = {
+          method: "GET"
+      }
+      let response = await fetch(url, options)
+      if (response.status === 200) {
+          const imageBlob = await response.blob()
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          const image = document.createElement('img')
+          image.src = imageObjectURL
+          const container = document.getElementById("map-container")
+          container.append(image)
+      }
+      else {
+          console.log("HTTP-Error: " + response.status)
+      }
+  }
 
 
 getStates();
@@ -209,16 +204,13 @@ getStates();
      }else{
       img.setAttribute("src", data.images[0].url )
      }
-    //var img1 = data.images[0].url;
-     //img.src = img1;
- // img.setAttribute("src", img1);
-    img.setAttribute("alt", "Picture of destination");
+     img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
   
      load_map(data.longitude, data.latitude)
-   // var mapdiv = document.createElement("div");
-   // mapdiv.setAttribute("id","map-container");
-    // div.appendChild(mapdiv);
+     var mapdiv = document.createElement("div");
+     mapdiv.setAttribute("id","map-container");
+     main.appendChild(mapdiv);
 
      var div2 = document.createElement("div");
      div2.setAttribute("class","px-6 py-4");
