@@ -1,6 +1,7 @@
 var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
 var campGrounds = [];
+var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFlaTgifQ.rJIBDrbFLHr2CMnNCEtaeA';
 
 var campname = 2;
 var parkname = 1;
@@ -160,6 +161,32 @@ function getParkAmenities() {
 
 
 
+async function load_map(long,lat) {
+// change parkLong and parkLat to call API data of Long and Lat
+    var parkLong = long
+    var parkLat = lat
+// change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
+    var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+
+    var url = testURL
+
+    const options = {
+        method: "GET"
+    }
+    let response = await fetch(url, options)
+    if (response.status === 200) {
+        const imageBlob = await response.blob()
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+        const image = document.createElement('img')
+        image.src = imageObjectURL
+        const container = document.getElementById("map-container")
+        container.append(image)
+    }
+    else {
+        console.log("HTTP-Error: " + response.status)
+    }
+}
+
 
 
 getStates();
@@ -188,6 +215,7 @@ getStates();
     img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
   
+     load_map(data.longitude, data.latitude)
    // var mapdiv = document.createElement("div");
    // mapdiv.setAttribute("id","map-container");
     // div.appendChild(mapdiv);

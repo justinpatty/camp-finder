@@ -3,7 +3,7 @@ var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFla
 async function load_map() {
 // change parkLong and parkLat to call API data of Long and Lat
     var parkLong = "-91.3085"
-    var parkLat = "34.0039"
+    var parkLat = "34.0039da"
 // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
     var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
 
