@@ -2,7 +2,7 @@ var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
 var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFlaTgifQ.rJIBDrbFLHr2CMnNCEtaeA';
 var campGrounds = [];
-
+var saveBtn = document.getElementById('save-btn');
 var campname = 2;
 var parkname = 1;
 
@@ -104,6 +104,7 @@ function showCampsDropdown(camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }
   document.querySelector("#camp-dropdown").innerHTML = options;
+  console.log(options)
 }
 
 document
@@ -113,6 +114,7 @@ document
     var index = document.querySelector("#camp-dropdown").value;
     console.log(campGrounds[+index])
     showCampInfo(campGrounds[+index]);
+    saveToLocalStorage(campGrounds[+index]);
   });
 
 function showCampInfo(camp) {
@@ -153,9 +155,44 @@ function getParkAmenities() {
     });
 }
 
+function saveToLocalStorage(data){
+    var searchStorage = [];
+    searchStorage.push(data.name)
+    console.log('data', searchStorage)
+    localStorage.setItem('searchHistory', searchStorage);
+    var searchedValue = localStorage.getItem('searchHistory')
+    console.log(searchedValue)
+    }
+saveBtn.addEventListener('click', saveToLocalStorage)
 
 
 
+
+async function load_map(long,lat) {
+  // change parkLong and parkLat to call API data of Long and Lat
+      var parkLong = long
+      var parkLat = lat
+  // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
+      var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+  
+      var url = testURL
+  
+      const options = {
+          method: "GET"
+      }
+      let response = await fetch(url, options)
+      if (response.status === 200) {
+          const imageBlob = await response.blob()
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          const image = document.createElement('img')
+          image.src = imageObjectURL
+          const container = document.getElementById("map-container")
+          container.append(image)
+      }
+      else {
+          console.log("HTTP-Error: " + response.status)
+      }
+  }
 
 async function load_map(long,lat) {
   // change parkLong and parkLat to call API data of Long and Lat
