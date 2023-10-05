@@ -1,8 +1,10 @@
 var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
+var mbapiKey = 'pk.eyJ1IjoibXBmZWlmZXIxIiwiYSI6ImNsbjlhOTgwbTA0eTcybWxicHNoYzFlaTgifQ.rJIBDrbFLHr2CMnNCEtaeA';
 var campGrounds = [];
 var saveBtn = document.getElementById('save-btn');
-
+var campname = 2;
+var parkname = 1;
 
 function getStates() {
   const url =
@@ -39,7 +41,7 @@ document
     .then(function (data) {
       console.log(data);
       var f = false;
-      cards(data, f);
+      cards(data, f, parkname);
       const parks = data.data.filter(function (item) {
       return item.fullName.toLowerCase().includes("park");
       });
@@ -74,6 +76,9 @@ function getCampGrounds(park)  {
     })
     .then(function (data) {
       console.log(data);
+     var f = false
+      
+      cards(data, f, campname)
       if (data.total == 0) { 
     //   document.querySelector(".alert").textContent = "No campgrounds found! ";   
         // Modal; if response is 0 then modal appears 
@@ -113,13 +118,8 @@ document
   });
 
 function showCampInfo(camp) {
- //   const content = `
   var t = true;
-    cards(camp, t);
-   // <img src="${camp.images[0].url}" alt="${camp.images[0].altText}">
-  //        <h3>Name: ${camp.name}</h3>
-  //         <p>${camp.description}</p>`
-   // document.querySelector(".camp-info").innerHTML=content
+    cards(camp, t, campname);
 }
 
 function getParkActivites() {
@@ -168,10 +168,63 @@ saveBtn.addEventListener('click', saveToLocalStorage)
 
 
 
+async function load_map(long,lat) {
+  // change parkLong and parkLat to call API data of Long and Lat
+      var parkLong = long
+      var parkLat = lat
+  // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
+      var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+  
+      var url = testURL
+  
+      const options = {
+          method: "GET"
+      }
+      let response = await fetch(url, options)
+      if (response.status === 200) {
+          const imageBlob = await response.blob()
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          const image = document.createElement('img')
+          image.src = imageObjectURL
+          const container = document.getElementById("map-container")
+          container.append(image)
+      }
+      else {
+          console.log("HTTP-Error: " + response.status)
+      }
+  }
+
+async function load_map(long,lat) {
+  // change parkLong and parkLat to call API data of Long and Lat
+      var parkLong = long
+      var parkLat = lat
+  // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
+      var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
+  
+      var url = testURL
+  
+      const options = {
+          method: "GET"
+      }
+      let response = await fetch(url, options)
+      if (response.status === 200) {
+          const imageBlob = await response.blob()
+          const imageObjectURL = URL.createObjectURL(imageBlob);
+          const image = document.createElement('img')
+          image.src = imageObjectURL
+          const container = document.getElementById("map-container")
+          container.append(image)
+      }
+      else {
+          console.log("HTTP-Error: " + response.status)
+      }
+  }
+
 
 getStates();
 
-  function cards(data, tf) {
+  function cards(data, tf, nameStyle) {
+
 
   var main = document.querySelector("main");
   main.innerHTML = '';
@@ -183,15 +236,18 @@ getStates();
   
     var img = document.createElement('img');
     img.setAttribute("class", "w-full");
-    var img1 = data.images[0].url;
-     img.src = img1;
- // img.setAttribute("src", img1);
-    img.setAttribute("alt", "Picture of destination");
+    if (data.images[0] === undefined ) {
+      img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
+     }else{
+      img.setAttribute("src", data.images[0].url )
+     }
+     img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
   
-   // var mapdiv = document.createElement("div");
-   // mapdiv.setAttribute("id","map-container");
-    // div.appendChild(mapdiv);
+     load_map(data.longitude, data.latitude)
+     var mapdiv = document.createElement("div");
+     mapdiv.setAttribute("id","map-container");
+     main.appendChild(mapdiv);
 
      var div2 = document.createElement("div");
      div2.setAttribute("class","px-6 py-4");
@@ -220,7 +276,11 @@ getStates();
      
      var img = document.createElement('img');
      img.setAttribute("class", "w-full");
-     img.src = data.data[i].images[0].url;
+     if (data.data[i].images[0] === undefined ) {
+      img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
+     }else{
+      img.setAttribute("src", data.data[i].images[0].url )
+     }
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
@@ -230,8 +290,11 @@ getStates();
  
      var div2a = document.createElement("div");
      div2a.setAttribute("class","font-bold text-xl mb-2");
-     var fullName = data.data[i].fullName
-     div2a.textContent = fullName;
+     if (nameStyle == 1) {
+      div2a.textContent = data.data[i].fullName;
+    }else{
+      div2a.textContent = data.data[i].name;
+    }
      div2.appendChild(div2a);
  
      var p = document.createElement("p");
