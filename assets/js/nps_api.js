@@ -2,7 +2,8 @@ var baseURL = "https://developer.nps.gov/api/v1";
 var apiKey = "GpXBVOoADabZe6DAWf2atfIHqSzsdyDMWejfa9rK";
 var campGrounds = [];
 
-
+var campname = 2;
+var parkname = 1;
 
 function getStates() {
   const url =
@@ -39,7 +40,7 @@ document
     .then(function (data) {
       console.log(data);
       var f = false;
-      cards(data, f);
+      cards(data, f, parkname);
       const parks = data.data.filter(function (item) {
       return item.fullName.toLowerCase().includes("park");
       });
@@ -74,6 +75,9 @@ function getCampGrounds(park)  {
     })
     .then(function (data) {
       console.log(data);
+     var f = false
+      
+      cards(data, f, campname)
       if (data.total == 0) { 
     //   document.querySelector(".alert").textContent = "No campgrounds found! ";   
         // Modal; if response is 0 then modal appears 
@@ -113,7 +117,7 @@ document
 function showCampInfo(camp) {
  //   const content = `
   var t = true;
-    cards(camp, t);
+    cards(camp, t, campname);
    // <img src="${camp.images[0].url}" alt="${camp.images[0].altText}">
   //        <h3>Name: ${camp.name}</h3>
   //         <p>${camp.description}</p>`
@@ -160,7 +164,8 @@ function getParkAmenities() {
 
 getStates();
 
-  function cards(data, tf) {
+  function cards(data, tf, nameStyle) {
+
 
   var main = document.querySelector("main");
   main.innerHTML = '';
@@ -172,8 +177,13 @@ getStates();
   
     var img = document.createElement('img');
     img.setAttribute("class", "w-full");
-    var img1 = data.images[0].url;
-     img.src = img1;
+    if (data.images[0] === undefined ) {
+      img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
+     }else{
+      img.setAttribute("src", data.images[0].url )
+     }
+    //var img1 = data.images[0].url;
+     //img.src = img1;
  // img.setAttribute("src", img1);
     img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
@@ -209,7 +219,11 @@ getStates();
      
      var img = document.createElement('img');
      img.setAttribute("class", "w-full");
-     img.src = data.data[i].images[0].url;
+     if (data.data[i].images[0] === undefined ) {
+      img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
+     }else{
+      img.setAttribute("src", data.data[i].images[0].url )
+     }
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
@@ -219,8 +233,11 @@ getStates();
  
      var div2a = document.createElement("div");
      div2a.setAttribute("class","font-bold text-xl mb-2");
-     var fullName = data.data[i].fullName
-     div2a.textContent = fullName;
+     if (nameStyle == 1) {
+      div2a.textContent = data.data[i].fullName;
+    }else{
+      div2a.textContent = data.data[i].name;
+    }
      div2.appendChild(div2a);
  
      var p = document.createElement("p");
