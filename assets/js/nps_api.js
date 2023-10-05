@@ -203,22 +203,22 @@ getStates();
   main.innerHTML = '';
   
     if (tf == true) {
-    var div = document.createElement("div");
-    div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
-    main.appendChild(div);
-  
-    var img = document.createElement('img');
-    img.setAttribute("class", "w-full");
-    if (data.images[0] === undefined ) {
+      var div = document.createElement("div");
+      div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+      main.appendChild(div);
+      
+      var img = document.createElement('img');
+      img.setAttribute("class", "w-full");
+      if (data.images[0] === undefined ) {
       img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
-     }else{
-      img.setAttribute("src", data.images[0].url )
-     }
+      }else{
+        img.setAttribute("src", data.images[0].url )
+      }
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
   
-     load_map(data.longitude, data.latitude)
      var mapdiv = document.createElement("div");
+     mapdiv.setAttribute("src", load_map(data.longitude, data.latitude))
      mapdiv.setAttribute("id","map-container");
      main.appendChild(mapdiv);
 
@@ -244,9 +244,20 @@ getStates();
  for (var i = 0; i < data.data.length; i++) {
      console.log(i);
      var div = document.createElement("div");
-     div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+     div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg 002900 mb-8");
      main.appendChild(div);
-     
+     var div2 = document.createElement("div");
+     div2.setAttribute("class","px-6 py-4");
+     div.appendChild(div2);
+     var div2a = document.createElement("div");
+     div2a.setAttribute("class","font-bold text-xl mb-2");
+     if (nameStyle == 1) {
+      div2a.textContent = data.data[i].fullName;
+    }else{
+      div2a.textContent = data.data[i].name;
+    }
+     div2.appendChild(div2a);
+
      var img = document.createElement('img');
      img.setAttribute("class", "w-full");
      if (data.data[i].images[0] === undefined ) {
@@ -257,23 +268,13 @@ getStates();
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
-     var div2 = document.createElement("div");
-     div2.setAttribute("class","px-6 py-4");
-     div.appendChild(div2);
- 
-     var div2a = document.createElement("div");
-     div2a.setAttribute("class","font-bold text-xl mb-2");
-     if (nameStyle == 1) {
-      div2a.textContent = data.data[i].fullName;
-    }else{
-      div2a.textContent = data.data[i].name;
-    }
-     div2.appendChild(div2a);
+     
+    
  
      var p = document.createElement("p");
      p.setAttribute("class","text-gray-700 text-base");
      p.textContent =  data.data[i].description;
-     div2.appendChild(p);
+     div.appendChild(p);
  
      var div3 = document.createElement("div");
      div3.setAttribute("class","px-6 pt-4 pb-2");
