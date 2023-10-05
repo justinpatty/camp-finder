@@ -94,7 +94,7 @@ function getCampGrounds(park)  {
 
 function showCampsDropdown(camps) {
   campGrounds = camps;
-  var options = '<option value="">Select a park</option>';
+  var options = '<option value="">Select a Campsite</option>';
   for (const i in camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }

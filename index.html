@@ -15,9 +15,9 @@
   </head>
   <body>
     
-    <header id="camper">
+    <header class="flex bg-[#decd87] border-b-8 border-[#502D16FE] justify-center">
         <!-- <header class="flex items-center bg-green-500 py-10 ft bold"> -->
-     <img class="h-64 ml-44 px-2" src="./assets/images/camp_finder_horizontal_clearbg.png" alt="" srcset="">
+     <img class="h-32 px-2" src="./assets/images/camp_finder_horizontal_clearbg.png" alt="" srcset="">
       <!-- nav bar -->
       <!-- <nav class="flex"><i class="fa-solid fa-bars"></i></nav> -->
     </header>
@@ -25,9 +25,10 @@
     <div class="alert"></div>
     <!-- Search form by City, State -->
     <!-- Search box 1 -->
-    <aside class = "forms flex max-w-xs flex-wrap">
+    <div class="flex col-2">
+    <aside class = "forms flex max-w-xs flex-wrap border-r-2 border-[#502D16FE]">
     <form id="search-state-form" class="max-w-sm">
-      <div class="flex items-center border-b border-green-500 py-2">
+      <div class="flex items-center border-b-2 border-[#502D16FE] py-2">
         <input
           class="appearance-none bg-transparent border-none w-full text-slate-950 py-1 leading-tight focus:outline-none"
           type="text"
@@ -44,7 +45,7 @@
     </form>
 <!-- Search Box 2 -->
     <form id="search-park-form" class="w-full max-w-sm">
-        <div class="flex items-center border-b border-green-500 py-2">
+        <div class="flex items-center border-b-2 border-[#502D16FE] py-2">
           <input
             class="max-w-xs appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
@@ -61,11 +62,10 @@
       </form>
 <!-- Search Box 3 -->
       <form id="search-camps-form" class="w-full max-w-sm">
-        <div class="flex items-center border-b border-green-500 py-2">
+        <div class="flex items-center border-b-2 border-[#502D16FE] py-2 mb-4">
           <input
             class="appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
-           
             aria-label="Full name"
           />
           <select class="max-w-xs" id="camp-dropdown"></select>
@@ -77,26 +77,23 @@
           </button>
         </div>
       </form>
+      <div id="map-container">
+    </div>
     </aside>
+    <main class="gap-8 columns-3 mb-1">
+      
+    </main>
+
+</div>
 
        <!-- Map Container -->
-   <article class=" bg-gray-50 py-2 px-8 ml-72">
-    <!-- <div class="camp-info">
-           <img src="" alt="">           -->
-      <!-- </div> --> 
-      <div id="map-container">
 
-
-      </div>
-  </article>
   
       <aside class="width-10">
 
       </aside>
   
-      <main class="gap-8 columns-3 mb-1">
-      
-      </main>
+   
 
       <!-- Modal Pop up "No Campgrounds" -->
      <div class="modal">  
