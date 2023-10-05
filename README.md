@@ -24,11 +24,10 @@ Mikel Pfeifer - [GitHub](https://github.com/mdpfeifer1) <br/>
 Raymond Bell - [GitHub](https://github.com/G6-2Flyy) <br/>
 Shanna Brooks - [GitHub](https://github.com/shanna-not-shawna) <br/>
 
-List your collaborators, if any, with links to their GitHub profiles.
+APIs: <br/>
+The National Park Service - [API](https://www.nps.gov/subjects/developer/index.htm) <br/>
+Mapbox - [API](https://docs.mapbox.com/api/overview/)
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
 
 ## License
 MIT License
