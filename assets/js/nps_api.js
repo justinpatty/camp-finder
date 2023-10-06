@@ -99,7 +99,7 @@ function getCampGrounds(park)  {
 
 function showCampsDropdown(camps) {
   campGrounds = camps;
-  var options = '<option value="">Select a Campsite</option>';
+  var options = '<option value="">Select a campground</option>';
   for (const i in camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }
@@ -165,7 +165,7 @@ function saveToLocalStorage(data){
     }
 saveBtn.addEventListener('click', saveToLocalStorage)
 
-
+  
 
 async function load_map(long,lat) {
   // change parkLong and parkLat to call API data of Long and Lat
@@ -187,68 +187,110 @@ async function load_map(long,lat) {
           image.src = imageObjectURL
           const container = document.getElementById("map-container")
           container.append(image)
-      }
-      else {
+      }else {
           console.log("HTTP-Error: " + response.status)
       }
-  }
+}
 
+ 
 
 getStates();
 
-  function cards(data, tf, nameStyle) {
+function cards(data, tf, nameStyle) {
 
 
   var main = document.querySelector("main");
   main.innerHTML = '';
   
     if (tf == true) {
+      main.setAttribute("class","flex columns-3 m-2")
+
       var div = document.createElement("div");
-      div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg bg-green-500 mb-8");
+      div.setAttribute("class","max-w-sm overflow-hidden bg-[#228b22] mb-8");
       main.appendChild(div);
-      
+  
       var img = document.createElement('img');
       img.setAttribute("class", "w-full");
       if (data.images[0] === undefined ) {
-      img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
+        img.setAttribute("src", "https://daily.jstor.org/wp-content/uploads/2016/10/Moving_Forest_1050_700.jpg" )
       }else{
         img.setAttribute("src", data.images[0].url )
       }
-     img.setAttribute("alt", "Picture of destination");
-     div.appendChild(img);
+      img.setAttribute("alt", "Picture of destination");
+      div.appendChild(img);
   
-     var mapdiv = document.createElement("div");
-     mapdiv.setAttribute("src", load_map(data.longitude, data.latitude))
-     mapdiv.setAttribute("id","map-container");
-     main.appendChild(mapdiv);
-
-     var div2 = document.createElement("div");
-     div2.setAttribute("class","px-6 py-4");
-     div.appendChild(div2);
- 
-     var div2a = document.createElement("div");
-     div2a.setAttribute("class","font-bold text-xl mb-2");
-     div2a.textContent = data.name;
-     div2.appendChild(div2a);
- 
      var p = document.createElement("p");
-     p.setAttribute("class","text-gray-700 text-base");
+     p.setAttribute("class","text-gray-700 text-base mt-4 ml-2");
      p.textContent = data.description;
-     div2.appendChild(p);
+     div.appendChild(p);
  
      var div3 = document.createElement("div");
      div3.setAttribute("class","px-6 pt-4 pb-2");
      div.appendChild(div3);
 
- } else {
- for (var i = 0; i < data.data.length; i++) {
+
+     var section2 = document.createElement("div");
+     section2.setAttribute("class","max-w-sm overflow-hidden bg-[#228b22] mb-8");
+     main.appendChild(section2);
+
+     var div4 = document.createElement("div");
+     div4.setAttribute("class","px-6 py-4");
+     section2.appendChild(div4);
+
+     var div4a = document.createElement("div");
+     div4a.setAttribute("class","font-bold text-xl mb-2");
+     div4a.textContent = data.name;
+     div4.appendChild(div4a);
+
+     var mp = document.createElement("p");
+     mp.setAttribute("class","text-[#decd87] text-base row");
+     mp.textContent = data.audioDescription;
+     section2.appendChild(mp);
+
+     var section3 = document.createElement("div");
+     section3.setAttribute("class","max-w-sm overflow-hidden bg-[#228b22] mb-8");
+     main.appendChild(section3);
+     
+     var p3 = document.createElement("p");
+     p3.setAttribute("class","text-gray-700 text-base mt-4 ml-2");
+     p3.textContent = data.reservationInfo;
+     section3.appendChild(p3);
+
+     var p4 = document.createElement("p");
+     p4.setAttribute("class","text-blue-700 text-base mt-4 ml-2");
+     var a = document.createElement("a")
+     a.setAttribute("href", data.reservationUrl);
+     a.textContent = "get your reservation here";
+     p4.appendChild(a);
+     section3.appendChild(p4);
+
+     var p5 = document.createElement("p");
+     p5.setAttribute("class","text-blue-700 text-base mt-4 ml-2 mb-2");
+     var a2 = document.createElement("a")
+     a2.setAttribute("href", data.directionsUrl);
+     a2.textContent = "get directions here";
+     p5.appendChild(a2);
+     section3.appendChild(p5);
+
+     var mapdiv = document.createElement("div");
+     mapdiv.setAttribute("src", load_map(data.longitude, data.latitude))
+     mapdiv.setAttribute("id","map-container");
+     mapdiv.setAttribute("class", "object-bottom")
+     section3.appendChild(mapdiv);
+
+  } else {
+     main.setAttribute("class","flex flex-wrap gap-8 columns-3 m-2")
+      for (var i = 0; i < data.data.length; i++) {
      console.log(i);
+
      var div = document.createElement("div");
      div.setAttribute("class","max-w-sm rounded overflow-hidden shadow-lg 002900 mb-8");
      main.appendChild(div);
+
      var div2 = document.createElement("div");
      div2.setAttribute("class","px-6 py-4");
      div.appendChild(div2);
+
      var div2a = document.createElement("div");
      div2a.setAttribute("class","font-bold text-xl mb-2");
      if (nameStyle == 1) {
@@ -268,11 +310,8 @@ getStates();
      img.setAttribute("alt", "Picture of destination");
      div.appendChild(img);
     
-     
-    
- 
      var p = document.createElement("p");
-     p.setAttribute("class","text-gray-700 text-base");
+     p.setAttribute("class","text-[#decd87] text-base row");
      p.textContent =  data.data[i].description;
      div.appendChild(p);
  
@@ -280,6 +319,6 @@ getStates();
      div3.setAttribute("class","px-6 pt-4 pb-2");
      div.appendChild(div3);
     }
-  }
-} 
- 
+  } 
+}
+

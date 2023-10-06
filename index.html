@@ -16,15 +16,15 @@
   <body>
     <!-- header containing image w/ background
     and border background -->
-    <header class="flex bg-[#decd87] border-b-8 border-[#502D16FE] justify-center">
-     <img class="h-32 px-2" src="./assets/images/camp_finder_horizontal_clearbg.png" alt="" srcset="">
+    <header class="flex bg-[#decd87] border-b-8 border-[#502D16FE]">
+     <img class="h-32 px-2 py-4 m-8" src="./assets/images/camp_finder_horizontal_clearbg.png" alt="" srcset="">
     </header>
 <!-- </header> -->
     <div class="alert"></div>
     <!-- Search form by State -->
     <!-- Search box 1 -->
     <div class="flex col-2 bg-[#ECDEC9]">
-    <aside class = "forms max-w-xs flex-wrap border-r-2 border-[#502D16FE] mb-full">
+    <aside class = "forms max-w-xs flex-wrap border-r-2 border-[#502D16FE] mb-96">
     <form id="search-state-form" class="max-w-sm">
       <div class="flex items-center border-b-2 border-[#502D16FE] py-2">
         <input
@@ -32,9 +32,9 @@
           type="text"
           aria-label="Full name"
         />
-        <select class="max-w-xs " id="state-dropdown"></select>
+        <select class="max-w-xs bg-[#ECDEC9]" id="state-dropdown"></select>
         <button
-          class="flex-shrink-0 bg-[#502D16FE] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+          class="flex-shrink-0 bg-[#502D16] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
           type="submit"
         >
           Search
@@ -44,15 +44,15 @@
 <!-- Search Box 2 -->
 <!-- Search by Park -->
     <form id="search-park-form" class="w-full max-w-sm">
-        <div class="flex items-center border-b-2 border-[#502D16FE] py-2">
+        <div class="flex items-center border-b-2 border-[#502D16] py-2">
           <input
             class="max-w-xs appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
             aria-label="Full name"
           />
-          <select class="max-w-xs justify-center" id="park-dropdown"></select>
+          <select class="max-w-xs justify-center bg-[#ECDEC9]" id="park-dropdown"></select>
           <button
-            class="flex-shrink-0 bg-[#502D16FE] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            class="flex-shrink-0 bg-[#502D16] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"
           >
             Search
@@ -62,21 +62,21 @@
 <!-- Search Box 3 -->
 <!-- Search by campsites -->
       <form id="search-camps-form" class="w-full max-w-sm">
-        <div class="flex items-center border-b-2 border-[#502D16FE] py-2 mb-4">
+        <div class="flex items-center border-b-2 border-[#502D16] py-2 mb-4">
           <input
             class="appearance-none bg-transparent border-none w-full text-black-700 py-1 leading-tight focus:outline-none"
             type="text"
             aria-label="Full name"
           />
-          <select class="max-w-xs" id="camp-dropdown"></select>
+          <select class="max-w-xs bg-[#ECDEC9]" id="camp-dropdown"></select>
           <button
-            class="flex-shrink-0 bg-[#502D16FE] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+            class="flex-shrink-0 bg-[#502D16] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
             type="submit"
           >
             Search
           </button>
           <button id="save-btn"
-            class="flex-shrink-0 bg-green-500 hover:bg-red-500 border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+          class="flex-shrink-0 bg-[#502D16] hover:bg-[#decd87] border-teal-green hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
           >
             Save
           </button>
@@ -87,7 +87,8 @@
     </aside >
 
     <!-- class containing cards -->
-    <main class="gap-8 columns-3 m-2" id="map-container">  
+    <main>  
+        
     </main>
 </div>
 

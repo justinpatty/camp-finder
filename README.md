@@ -14,16 +14,20 @@ Provide a short description explaining the what, why, and how of your project. U
 
 Provide instructions and examples for use. Include screenshots as needed.
 
-Here is the live website. [Try it out!](https://justinpatty.github.io/camp-finder/)
+Here is the live website. [Try it out!](https://justinpatty.github.io/camp-finder/) <br/>
 ![Screenshot of Camp Finder](./assets/images/camp_finder_screenshot.png)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Justin Patty - [GitHub](https://github.com/justinpatty) <br/>
+Mikel Pfeifer - [GitHub](https://github.com/mdpfeifer1) <br/>
+Raymond Bell - [GitHub](https://github.com/G6-2Flyy) <br/>
+Shanna Brooks - [GitHub](https://github.com/shanna-not-shawna) <br/>
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+APIs: <br/>
+The National Park Service - [API](https://www.nps.gov/subjects/developer/index.htm) <br/>
+Mapbox - [API](https://docs.mapbox.com/api/overview/)
 
-If you followed tutorials, include links to those here as well.
 
 ## License
 MIT License
