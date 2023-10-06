@@ -6,6 +6,7 @@ var saveBtn = document.getElementById('save-btn');
 var campname = 2;
 var parkname = 1;
 
+// fetched github url to get json file with state names and abbreviations to create state dropdown
 function getStates() {
   const url =
     "https://gist.githubusercontent.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_hash.json";
@@ -24,7 +25,7 @@ function getStates() {
       console.log(error);
     });
 }
-
+// adds event listener to get the list of states value on search 
 document
   .querySelector("#search-state-form")
   .addEventListener("submit", function (event) {
@@ -32,6 +33,8 @@ document
     var stateSelect = document.querySelector("#state-dropdown").value;
     getParks(stateSelect);
   });
+
+  // fetched data from NPS API to get parks by state
   function getParks(state) {
   const requestUrl = `${baseURL}/parks?stateCode=${state}&api_key=${apiKey}`;
   fetch(requestUrl)
@@ -51,15 +54,16 @@ document
       console.log(error);
     });
 }
-
+// generate dropdown list of park options
 function showParkDropdown(parks) {
   var options = '<option value="">Select a park</option>';
+// loops through the object to generate list of park names
   for (const park of parks) {
     options += `<option value=${park.parkCode}>${park.fullName}</option>`;
   }
   document.querySelector("#park-dropdown").innerHTML = options;
 }
-
+// uses value from park name from dropdown to pass to get park campgrounds
 document
   .querySelector("#search-park-form")
   .addEventListener("submit", function (event) {
@@ -67,7 +71,7 @@ document
     var park = document.querySelector("#park-dropdown").value;
     getCampGrounds(park);
   });
-
+// call to get campground data for parks
 function getCampGrounds(park)  {
   const requestUrl = `${baseURL}/campgrounds?parkCode=${park}&api_key=${apiKey}`;
   fetch(requestUrl)
@@ -96,15 +100,16 @@ function getCampGrounds(park)  {
       }
     });
 }
-
+// create dropdown to show list of campgrounds
 function showCampsDropdown(camps) {
   campGrounds = camps;
   var options = '<option value="">Select a campground</option>';
+
+
   for (const i in camps) {
     options += `<option value=${i}>${camps[i].name}</option>`;
   }
   document.querySelector("#camp-dropdown").innerHTML = options;
-  console.log(options)
 }
 
 document
@@ -121,7 +126,7 @@ function showCampInfo(camp) {
   var t = true;
     cards(camp, t, campname);
 }
-
+// call to fetch park activities (future optimization option)
 function getParkActivites() {
   const requestUrl = `${baseURL}/activities/parks?api_key=${apiKey}`;
   fetch(requestUrl)
@@ -132,7 +137,7 @@ function getParkActivites() {
       console.log(data);
     });
 }
-
+// call to fetch park alerts and notifications (future optimization option)
 function getParkAlerts() {
   const requestUrl = `${baseURL}/alerts?api_key=${apiKey}`;
   fetch(requestUrl)
@@ -143,7 +148,7 @@ function getParkAlerts() {
       console.log(data);
     });
 }
-
+// call to fetch park amenities (future optimization option)
 function getParkAmenities() {
   const requestUrl = `${baseURL}/amenities?api_key=${apiKey}`;
   fetch(requestUrl)
@@ -154,14 +159,12 @@ function getParkAmenities() {
       console.log(data);
     });
 }
-
+// stores searched history for campgrounds by name
 function saveToLocalStorage(data){
-    var searchStorage = [];
-    searchStorage.push(data.name)
-    console.log('data', searchStorage)
-    localStorage.setItem('searchHistory', searchStorage);
-    var searchedValue = localStorage.getItem('searchHistory')
-    console.log(searchedValue)
+    var searchedCampSites = JSON.parse(localStorage.getItem('searchedCampSites')) || [];
+    searchedCampSites.push(data.name)
+    console.log('data', searchedCampSites)
+    localStorage.setItem('searchedCampSites', JSON.stringify(searchedCampSites));
     }
 saveBtn.addEventListener('click', saveToLocalStorage)
 
@@ -169,14 +172,16 @@ saveBtn.addEventListener('click', saveToLocalStorage)
 
 async function load_map(long,lat) {
   // change parkLong and parkLat to call API data of Long and Lat
+  // emptying string to populate map
+  
       var parkLong = long
       var parkLat = lat
   // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
       var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
   
       var url = testURL
-  
       const options = {
+         
           method: "GET"
       }
       let response = await fetch(url, options)
@@ -187,10 +192,11 @@ async function load_map(long,lat) {
           image.src = imageObjectURL
           const container = document.getElementById("map-container")
           container.append(image)
-      }else {
+      }
+      else {
           console.log("HTTP-Error: " + response.status)
       }
-}
+  }
 
  
 
