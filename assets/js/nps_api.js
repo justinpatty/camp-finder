@@ -170,40 +170,16 @@ saveBtn.addEventListener('click', saveToLocalStorage)
 
 async function load_map(long,lat) {
   // change parkLong and parkLat to call API data of Long and Lat
+  // emptying string to populate map
+  
       var parkLong = long
       var parkLat = lat
   // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
       var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
   
       var url = testURL
-  
       const options = {
-          method: "GET"
-      }
-      let response = await fetch(url, options)
-      if (response.status === 200) {
-          const imageBlob = await response.blob()
-          const imageObjectURL = URL.createObjectURL(imageBlob);
-          const image = document.createElement('img')
-          image.src = imageObjectURL
-          const container = document.getElementById("map-container")
-          container.append(image)
-      }
-      else {
-          console.log("HTTP-Error: " + response.status)
-      }
-  }
-
-async function load_map(long,lat) {
-  // change parkLong and parkLat to call API data of Long and Lat
-      var parkLong = long
-      var parkLat = lat
-  // change map marker color by changing f60404 in URL, can change size of map image by replacing 400x300
-      var testURL = 'https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+f60404(' + parkLong + ',' + parkLat + ')/' + parkLong + ',' + parkLat + ',7,0/400x300?access_token=' + mbapiKey;
-  
-      var url = testURL
-  
-      const options = {
+         
           method: "GET"
       }
       let response = await fetch(url, options)
