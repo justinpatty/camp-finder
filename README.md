@@ -3,16 +3,11 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+The purpose of this project is to build an application that allows users to enter a state and generate a list of national parks. This app will run in the browser and feature dynamically updated HTML and third-party CSS framework powered by JavaScript.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+To search for a campground, choose a state from the drop down and click on Search. This will display every national park in the chosen state. To refine results further, a user can select a specific park and a specific campsite within that park. Previous searches will be saved so the user can revisit previous searches.
 
 Here is the live website. [Try it out!](https://justinpatty.github.io/camp-finder/) <br/>
 ![Screenshot of Camp Finder](./assets/images/camp_finder_screenshot.png)
@@ -47,13 +42,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
