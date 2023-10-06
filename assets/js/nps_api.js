@@ -101,7 +101,6 @@ function showCampsDropdown(camps) {
   campGrounds = camps;
 
   var options = '<option value="">Select a campground</option>';
-=======
 
 
   for (const i in camps) {
